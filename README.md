@@ -1,3 +1,10 @@
+> [!CAUTION]
+> This is an experimental fork to propose a possible new major version.
+> 
+> It will not be compatible with any existing gateway. Do not try to create a gateway for this version, please 
+> share your [ideas](https://github.com/devnix-labs/omnipay-common/discussions/categories/ideas) so we can elaborate
+> a clear roadmap to define the shape of a new Omnipay version.
+
 # Omnipay Common
 
 **Core components for the Omnipay PHP payment processing library**
