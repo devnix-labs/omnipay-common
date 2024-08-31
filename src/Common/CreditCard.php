@@ -407,16 +407,16 @@ class CreditCard
      * Credit Card Brand
      *
      * Iterates through known/supported card brands to determine the brand of this card
-     *
-     * @return string
      */
-    public function getBrand()
+    public function getBrand(): string|null
     {
         foreach ($this->getSupportedBrands() as $brand => $val) {
             if (preg_match($val, $this->getNumber())) {
                 return $brand;
             }
         }
+
+        return null;
     }
 
     /**

@@ -1,0 +1,29 @@
+name: "PHPStan analysis"
+
+on:
+  pull_request:
+  push:
+    branches:
+    - "master"
+
+jobs:
+  phpstan:
+    name: "PHPStan analysis"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v4"
+
+      - name: "Install PHP"
+        uses: "shivammathur/setup-php@v2"
+        with:
+          coverage: "pcov"
+          php-version: "${{ matrix.php-version }}"
+          ini-values: memory_limit=-1
+          tools: composer:v2
+
+      - name: "Install dependencies"
+        run: "composer update --no-interaction --no-progress"
+
+      - name: "Run PHPStan"
+        run: "vendor/bin/phpstan"

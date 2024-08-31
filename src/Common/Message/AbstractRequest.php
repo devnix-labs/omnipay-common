@@ -308,9 +308,9 @@ abstract class AbstractRequest implements RequestInterface
      * Validates and returns the formatted amount.
      *
      * @throws InvalidRequestException on any validation failure.
-     * @return string The amount formatted to the correct number of decimal places for the selected currency.
+     * @return string|null The amount formatted to the correct number of decimal places for the selected currency.
      */
-    public function getAmount()
+    public function getAmount(): string|null
     {
         $money = $this->getMoney();
 
@@ -319,6 +319,8 @@ abstract class AbstractRequest implements RequestInterface
 
             return $moneyFormatter->format($money);
         }
+
+        return null;
     }
 
     /**
@@ -335,15 +337,17 @@ abstract class AbstractRequest implements RequestInterface
     /**
      * Get the payment amount as an integer.
      *
-     * @return integer
+     * @return int|null
      */
-    public function getAmountInteger()
+    public function getAmountInteger(): int|null
     {
         $money = $this->getMoney();
 
         if ($money !== null) {
             return (int) $money->getAmount();
         }
+
+        return null;
     }
 
     /**
